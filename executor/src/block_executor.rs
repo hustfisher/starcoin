@@ -76,7 +76,7 @@ impl BlockExecutor {
         let mut results =
             Executor::execute_transactions(chain_state.as_super(), vec![block_metadata_txn])
                 .map_err(BlockExecutorError::BlockTransactionExecuteErr)?;
-        let output = results.pop().expect("execute txn has output");
+        let output = results.pop().expect("execute txn has output"); // is ? better
         let (write_set, events, gas_used, status) = output.into_inner();
         let state_root = match status {
             TransactionStatus::Discard(status) => {
